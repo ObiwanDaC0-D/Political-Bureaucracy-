@@ -1,7 +1,9 @@
+import {phase2Entities,phase2Relations} from "./usace-phase2";
 export type RelationType = "administrative" | "command" | "civilian-oversight" | "coordination" | "statutory" | "policy";
 export type Entity = { id:string; name:string; acronym?:string; category:string; description:string; source?:string; status:"source-linked"|"research-needed" };
 export type Relation = { from:string; to:string; type:RelationType; note:string; status:"source-linked"|"research-needed" };
 export const entities:Entity[] = [
+...phase2Entities,
 {id:"president",name:"President of the United States",category:"Executive",description:"Head of the executive branch and Commander in Chief.",source:"https://www.whitehouse.gov/",status:"source-linked"},
 {id:"dod",name:"Department of Defense",acronym:"DoD",category:"Department",description:"Executive department responsible for national defense.",source:"https://www.defense.gov/",status:"source-linked"},
 {id:"army",name:"Department of the Army",category:"Military department",description:"Military department within DoD; civilian and military leadership roles must be distinguished.",source:"https://www.army.mil/",status:"source-linked"},
@@ -19,6 +21,7 @@ export const entities:Entity[] = [
 {id:"dhs",name:"Department of Homeland Security",acronym:"DHS",category:"Department",description:"Cabinet department containing FEMA.",source:"https://www.dhs.gov/",status:"source-linked"}
 ];
 export const relations:Relation[] = [
+...phase2Relations,
 {from:"president",to:"dod",type:"civilian-oversight",note:"Executive branch oversight; not a complete operational command depiction.",status:"source-linked"},
 {from:"dod",to:"army",type:"administrative",note:"Departmental organizational relationship.",status:"source-linked"},
 {from:"army",to:"secarmy",type:"civilian-oversight",note:"Civilian leadership position.",status:"source-linked"},
