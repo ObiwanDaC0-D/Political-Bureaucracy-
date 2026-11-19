@@ -1,7 +1,7 @@
 import {phase2Entities,phase2Relations} from "./usace-phase2";
 export type RelationType = "administrative" | "command" | "civilian-oversight" | "coordination" | "statutory" | "policy";
 export type Entity = { id:string; name:string; acronym?:string; category:string; description:string; source?:string; status:"source-linked"|"research-needed" };
-export type Relation = { from:string; to:string; type:RelationType; note:string; status:"source-linked"|"research-needed" };
+export type Relation = { from:string; to:string; type:RelationType; note:string; source?:string; status:"source-linked"|"research-needed" };
 export const entities:Entity[] = [
 ...phase2Entities,
 {id:"president",name:"President of the United States",category:"Executive",description:"Head of the executive branch and Commander in Chief.",source:"https://www.whitehouse.gov/",status:"source-linked"},
