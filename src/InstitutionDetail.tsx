@@ -1,0 +1,20 @@
+import {entities,relations,type RelationType} from "./data";
+import {getInstitutionProfile,getInstitutionConnections} from "./institutionProfiles";
+import {useState} from "react";
+type Tab="overview"|"connections"|"authority"|"sources";
+const tabs:{id:Tab;label:string}[]=[{id:"overview",label:"Overview"},{id:"connections",label:"Connections"},{id:"authority",label:"Authority"},{id:"sources",label:"Sources"}];
+export default function InstitutionDetail({id,onSelect}:{id:string;onSelect:(id:string)=>void}){
+const [tab,setTab]=useState<Tab>("overview");const [advanced,setAdvanced]=useState(false);const [types,setTypes]=useState<RelationType[]>(["administrative","command","civilian-oversight","coordination","statutory","policy"]);
+const item=entities.find(e=>e.id===id)!;const profile=getInstitutionProfile(id);const summary=getInstitutionConnections(id);const edges=relations.filter(r=>types.includes(r.type)&&(r.from===id||r.to===id));
+return <section className="panel details institution-detail" aria-label="Selected institution profile">
+<div className="panel-head"><h2>Institution profile</h2><span className="status">{item.status==="research-needed"?"RESEARCH NEEDED":"SOURCE LINKED"}</span></div>
+<h2 className="profile-title">{item.name}</h2><p className="muted">{item.acronym?item.acronym+" · ":""}{item.category}</p>
+<div className="profile-tabs" role="tablist" aria-label="Institution profile sections">{tabs.map(t=><button key={t.id} type="button" role="tab" aria-selected={tab===t.id} className={tab===t.id?"current":""} onClick={()=>setTab(t.id)}>{t.label}</button>)}</div>
+<div className="profile-tab-body" role="tabpanel">
+{tab==="overview"?<><h3>What does this institution do?</h3><p>{profile.mission}</p><h3>Key responsibilities</h3>{profile.responsibilities.length?<ul>{profile.responsibilities.map(x=><li key={x}>{x}</li>)}</ul>:<p className="muted">Detailed responsibilities need further research.</p>}<h3>Scope</h3><p>{profile.scope}</p></>:null}
+{tab==="connections"?<><h3>How is it connected?</h3><p className="muted">{summary.incoming.length} incoming and {summary.outgoing.length} outgoing recorded relationships. These are not necessarily command relationships.</p><button type="button" className="inline" aria-expanded={advanced} onClick={()=>setAdvanced(v=>!v)}>{advanced?"Hide relationship filters":"Advanced relationship filters"}</button>{advanced?<div className="filters">{(["administrative","command","civilian-oversight","coordination","statutory","policy"] as RelationType[]).map(t=><label key={t}><input type="checkbox" checked={types.includes(t)} onChange={()=>setTypes(old=>old.includes(t)?old.filter(x=>x!==t):[...old,t])}/>{t.replaceAll("-"," ")}</label>)}</div>:null}<div className="connections">{edges.length?edges.map((r,i)=>{const other=entities.find(e=>e.id===(r.from===id?r.to:r.from))!;return <button key={i} className="connection" onClick={()=>{onSelect(other.id);setTab("overview")}}><span className={"dot "+r.type}></span><span><strong>{other.name}</strong><small>{r.type.replaceAll("-"," ")} · {r.from===id?"outgoing":"incoming"}{r.status==="research-needed"?" · research needed":""}</small><em>{r.note}</em></span><span aria-hidden="true">›</span></button>}):<p className="muted">No recorded relationships match these filters.</p>}</div></>:null}
+{tab==="authority"?<><h3>Authority and reporting</h3><p>{profile.authorityNote}</p><p className="muted">Authority depends on applicable statutes, delegations, funding, and institutional context. A relationship does not necessarily establish approval authority.</p></>:null}
+{tab==="sources"?<><h3>Research sources</h3>{item.source?<p><a href={item.source} target="_blank" rel="noreferrer">Institutional source ↗</a></p>:<p className="warning">No institutional source attached.</p>}{profile.references?.map(ref=><p key={ref.url}><a href={ref.url} target="_blank" rel="noreferrer">{ref.label} ↗</a></p>)}<p className="muted">Source links are research leads, not independent verification of every claim.</p></>:null}
+{profile.researchNote?<p className="warning">{profile.researchNote}</p>:null}
+</div></section>
+}
