@@ -1,5 +1,12 @@
 import type {Entity,Relation} from "./data";
 const source="https://www.lrd.usace.army.mil/About/Districts/";
+export const lrhVerifiedFunctions:Entity[]=[
+{id:"lrh-reg-energy",name:"Regulatory Energy Resource Branch",category:"Regulatory branch",description:"Huntington Regulatory branch for energy-resource projects in Ohio and West Virginia.",source:"https://www.lrd.usace.army.mil/huntington/",status:"source-linked"},
+{id:"lrh-reg-north",name:"Regulatory North Branch",category:"Regulatory branch",description:"Huntington Regulatory branch for non-energy projects in Ohio.",source:"https://www.lrd.usace.army.mil/huntington/",status:"source-linked"},
+{id:"lrh-reg-south",name:"Regulatory South/Transportation Branch",category:"Regulatory branch",description:"Huntington Regulatory branch for non-energy projects in West Virginia and transportation projects in Ohio and West Virginia.",source:"https://www.lrd.usace.army.mil/huntington/",status:"source-linked"},
+{id:"lrh-pcx",name:"Planning Center of Expertise for Inland Navigation and Risk-Informed Economics",acronym:"PCXIN-RED",category:"Planning center of expertise",description:"National center of expertise located in Huntington; geographic location does not establish local district reporting or command.",source:"https://www.lrd.usace.army.mil/huntington/",status:"source-linked"},
+{id:"lrh-dpm",name:"Deputy for Programs and Project Management, Huntington District",category:"Civilian leadership position",description:"Officially listed district leadership position; no implied direct reporting relationship to Planning Branch.",source:"https://www.lrd.usace.army.mil/About/Leadership/Category/24293/huntington-district/",status:"source-linked"}
+];
 export const phase2Entities:Entity[]=[
 ...lrhVerifiedFunctions,
 {id:"lrb",name:"Buffalo District",acronym:"LRB",category:"USACE district",description:"One of seven districts within Great Lakes and Ohio River Division.",source,status:"source-linked"},
@@ -13,13 +20,6 @@ export const phase2Entities:Entity[]=[
 {id:"lrh-civilworks",name:"Huntington Civil Works Programs",category:"Mission function",description:"Huntington District delivers flood risk management, navigation and other Civil Works activities. This is a functional grouping, not an asserted branch-level reporting line.",source:"https://www.lrd.usace.army.mil/huntington/",status:"source-linked"},
 {id:"lrh-regulatory",name:"Huntington Regulatory Program",category:"Mission function",description:"Regulatory responsibilities under Clean Water Act Section 404 and Rivers and Harbors Act Section 10; this is not an asserted internal supervisory chain.",source:"https://www.lrd.usace.army.mil/Public-Notices/Programs/Article/3647597/regulatory-program-ohio/",status:"source-linked"},
 {id:"lrh-emergency",name:"Huntington Emergency Response",category:"Mission function",description:"District emergency response activities; organizational office reporting details require additional research.",source:"https://www.lrd.usace.army.mil/huntington/",status:"source-linked"}
-];
-export const lrhVerifiedFunctions:Entity[]=[
-{id:"lrh-reg-energy",name:"Regulatory Energy Resource Branch",category:"Regulatory branch",description:"Huntington Regulatory branch for energy-resource projects in Ohio and West Virginia.",source:"https://www.lrd.usace.army.mil/huntington/",status:"source-linked"},
-{id:"lrh-reg-north",name:"Regulatory North Branch",category:"Regulatory branch",description:"Huntington Regulatory branch for non-energy projects in Ohio.",source:"https://www.lrd.usace.army.mil/huntington/",status:"source-linked"},
-{id:"lrh-reg-south",name:"Regulatory South/Transportation Branch",category:"Regulatory branch",description:"Huntington Regulatory branch for non-energy projects in West Virginia and transportation projects in Ohio and West Virginia.",source:"https://www.lrd.usace.army.mil/huntington/",status:"source-linked"},
-{id:"lrh-pcx",name:"Planning Center of Expertise for Inland Navigation and Risk-Informed Economics",acronym:"PCXIN-RED",category:"Planning center of expertise",description:"National center of expertise located in Huntington; geographic location does not establish local district reporting or command.",source:"https://www.lrd.usace.army.mil/huntington/",status:"source-linked"},
-{id:"lrh-dpm",name:"Deputy for Programs and Project Management, Huntington District",category:"Civilian leadership position",description:"Officially listed district leadership position; no implied direct reporting relationship to Planning Branch.",source:"https://www.lrd.usace.army.mil/About/Leadership/Category/24293/huntington-district/",status:"source-linked"}
 ];
 const districtIds=["lrb","lrc","lre","lrl","lrn","lrp"];
 export const phase2Relations:Relation[]=[
