@@ -60,3 +60,14 @@ a:focus-visible,select:focus-visible,.mobile-menu-toggle:focus-visible{outline:2
 @media(min-width:851px){aside{position:sticky;top:0;height:100vh;overflow-y:auto;min-height:0}.nav-group{margin-bottom:10px}.brand{margin-bottom:22px}}
 @media(max-width:850px){.nav-group .side-label{display:block}.nav-group{margin-bottom:12px}}
 @media(max-width:600px){.quick-actions{display:grid;grid-template-columns:1fr}.quick-actions .primary{width:100%}}
+
+/* Rich institutional profiles */
+.profile-content{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:22px 0}
+.profile-block{border:1px solid var(--line);border-radius:9px;padding:15px;background:var(--bg);min-width:0}
+.profile-block h3{margin:0 0 9px;color:var(--accent);font-size:13px}
+.profile-block p{margin:0;font-size:13px;line-height:1.65}
+.profile-block ul{padding-left:18px;margin:0}
+.profile-block li{margin:7px 0;font-size:13px;line-height:1.55}
+.profile-block a{overflow-wrap:anywhere}
+.profile-content>.warning{grid-column:1/-1;margin:0}
+@media(max-width:1150px){.profile-content{grid-template-columns:1fr}}
