@@ -50,3 +50,13 @@ a:focus-visible,select:focus-visible,.mobile-menu-toggle:focus-visible{outline:2
 .hierarchy-row.traced>.hierarchy-entry>.hierarchy-entity{border:2px solid #e5bf66}
 .hierarchy-row.traced>.hierarchy-edge{border-left-color:#e5bf66}
 @media(max-width:600px){.hierarchy-toolbar label{margin-left:0}.hierarchy-viewport{padding:12px;max-height:540px}}
+
+/* Organized information architecture and lighter overview */
+.nav-group{margin-bottom:14px}
+.nav-group .side-label{margin:9px 0 7px;padding:0 14px}
+.quick-start{margin:20px 0}
+.quick-actions{display:flex;gap:10px;flex-wrap:wrap}
+.quick-actions .primary{margin:0;min-height:44px;text-align:left}
+@media(min-width:851px){aside{position:sticky;top:0;height:100vh;overflow-y:auto;min-height:0}.nav-group{margin-bottom:10px}.brand{margin-bottom:22px}}
+@media(max-width:850px){.nav-group .side-label{display:block}.nav-group{margin-bottom:12px}}
+@media(max-width:600px){.quick-actions{display:grid;grid-template-columns:1fr}.quick-actions .primary{width:100%}}
