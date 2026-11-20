@@ -25,3 +25,28 @@ a:focus-visible,select:focus-visible,.mobile-menu-toggle:focus-visible{outline:2
 
 /* Expandable atlas views and shared selection */
 .atlas-section{margin:18px 0}.section-toggle{display:flex;justify-content:space-between;align-items:center;width:100%;min-height:48px;padding:12px 18px;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--text);font:inherit;font-weight:700;text-align:left;cursor:pointer}.section-toggle:hover{border-color:var(--accent)}.section-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:3px}.atlas-section>.org-graph,.atlas-section>.panel{margin-top:8px}.graph-node button.graph-selected{border:2px solid var(--accent);box-shadow:0 0 0 2px color-mix(in srgb,var(--accent) 18%,transparent)}
+
+/* Presidential-to-Huntington organizational explorer */
+.hierarchy-toolbar{display:flex;align-items:center;flex-wrap:wrap;gap:9px;margin:16px 0}
+.hierarchy-toolbar .primary{margin:0}
+.hierarchy-toolbar button{min-height:40px}
+.hierarchy-toolbar button:disabled{opacity:.45;cursor:not-allowed}
+.hierarchy-toolbar label{display:flex;align-items:center;gap:9px;margin-left:auto;color:var(--muted);font-size:13px}
+.hierarchy-toolbar label button{border:1px solid var(--line);background:var(--bg);color:var(--text);border-radius:6px;padding:7px 12px;cursor:pointer}
+.hierarchy-toolbar output{min-width:44px;text-align:center}
+.hierarchy-viewport{overflow:auto;max-height:650px;min-height:200px;border:1px solid var(--line);border-radius:10px;background:var(--bg);padding:20px;cursor:grab;touch-action:pan-x pan-y}
+.hierarchy-viewport:active{cursor:grabbing}
+.hierarchy-canvas{min-width:530px;width:max-content;max-width:none;padding:0 20px 20px 0}
+.hierarchy-row{position:relative;margin-bottom:12px;min-width:340px}
+.hierarchy-edge{border-left:2px solid var(--accent);margin-left:17px;padding:6px 0 7px 12px;color:var(--muted);font-size:12px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.hierarchy-edge a{color:var(--accent)}
+.hierarchy-entry{display:flex;align-items:stretch;gap:8px}
+.hierarchy-expand{width:36px;min-width:36px;border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:7px;font-size:19px;cursor:pointer}
+.hierarchy-expand:disabled{opacity:.4;cursor:default}
+.hierarchy-entity{min-width:290px;max-width:420px;flex:1;padding:12px 16px;border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:8px;text-align:left;cursor:pointer}
+.hierarchy-entity strong,.hierarchy-entity small{display:block}
+.hierarchy-entity small{margin-top:5px;color:var(--muted);font-size:11px}
+.hierarchy-entity.selected{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.hierarchy-row.traced>.hierarchy-entry>.hierarchy-entity{border:2px solid #e5bf66}
+.hierarchy-row.traced>.hierarchy-edge{border-left-color:#e5bf66}
+@media(max-width:600px){.hierarchy-toolbar label{margin-left:0}.hierarchy-viewport{padding:12px;max-height:540px}}
