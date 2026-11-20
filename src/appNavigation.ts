@@ -1,13 +1,31 @@
 export const navigationGroups=[
-{label:"Explore",items:["Overview","Atlas","USACE","Army & DoD","Federal Government"]},
-{label:"Understand",items:["Missions & Authorities","Decision Explorer","History","Institutional Workbench"]},
-{label:"Study & Save",items:["Learning Lab","Research","My Role"]}
+{label:"Explore",items:["Institutional Explorer","Missions & Authorities","Decision Explorer"]},
+{label:"Research & Learning",items:["Institutional Workbench","Learning Lab","Research & Notes","My Role"]}
 ] as const;
-export const atlasViews=["Atlas","USACE","Army & DoD","Federal Government","Overview"] as const;
-export function isAtlasView(page:string){return (atlasViews as readonly string[]).includes(page)}
-export function visibleInstitution(id:string,page:string){
-if(page==="USACE")return ["usace","lrd","lrh","planning","formulation","asacw"].includes(id)||id.startsWith("lr");
-if(page==="Army & DoD")return ["dod","secdef","army","secarmy","usace","asacw"].includes(id);
-if(page==="Federal Government")return ["president","secdef","congress","omb","epa","dhs","fema","dod"].includes(id);
-return true;
+export const explorerLevels=[
+{value:"all",label:"All federal institutions"},
+{value:"executive",label:"Executive branch & partners"},
+{value:"defense",label:"Department of Defense"},
+{value:"army",label:"Department of the Army"},
+{value:"usace",label:"USACE"},
+{value:"lrd",label:"Great Lakes and Ohio River Division"},
+{value:"lrh",label:"Huntington District"}
+] as const;
+export type ExplorerLevel=typeof explorerLevels[number]["value"];
+export type ExplorerMode="hierarchy"|"network"|"directory";
+const levelIds:Record<Exclude<ExplorerLevel,"all">,string[]>={
+executive:["president","secdef","dod","army","secarmy","asacw","congress","omb","epa","dhs","fema"],
+defense:["dod","secdef","army","secarmy","asacw","usace","lrd","lrh"],
+army:["army","secarmy","asacw","usace","lrd","lrh"],
+usace:["usace","lrd","lrh","asacw","planning","formulation"],
+lrd:["lrd","lrh"],
+lrh:["lrh","planning","formulation"]
+};
+export function visibleInstitution(id:string,level:ExplorerLevel){
+if(level==="all")return true;
+if(level==="usace"||level==="lrd"||level==="lrh")return levelIds[level].includes(id)||(level==="usace"&&id.startsWith("lr"))||(level==="lrd"&&id.startsWith("lr"));
+return levelIds[level].includes(id);
+}
+export function migratePage(page:string):string{
+return ["Overview","Atlas","USACE","Army & DoD","Federal Government"].includes(page)?"Institutional Explorer":page==="History"?"Institutional Workbench":page==="Research"?"Research & Notes":page;
 }
