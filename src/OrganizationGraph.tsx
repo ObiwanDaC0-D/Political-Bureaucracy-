@@ -9,8 +9,8 @@ while(queue.length){const current=queue.shift()!;if(visited.has(current.id)||cur
 for(const edge of relations){if(edge.from===current.id&&edge.type==="administrative"&&(includeResearch||edge.status==="source-linked"))queue.push({id:edge.to,depth:current.depth+1});}}
 return levels;
 }
-export default function OrganizationGraph({selected,onSelect}:{selected:string;onSelect:(id:string)=>void}){
-const [rootId,setRootId]=useState<string>("president");
+export default function OrganizationGraph({selected,onSelect,initialRoot="president"}:{selected:string;onSelect:(id:string)=>void;initialRoot?:string}){
+const [rootId,setRootId]=useState<string>(initialRoot);
 const [enabled,setEnabled]=useState<RelationType[]>(["administrative","civilian-oversight"]);
 const [includeResearch,setIncludeResearch]=useState(false);
 const [expanded,setExpanded]=useState<Set<string>>(()=>new Set(["president","secdef","dod","army","usace","lrd"]));
