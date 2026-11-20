@@ -5,6 +5,7 @@ export type Relation = { from:string; to:string; type:RelationType; note:string;
 export const entities:Entity[] = [
 ...phase2Entities,
 {id:"president",name:"President of the United States",category:"Executive",description:"Head of the executive branch and Commander in Chief.",source:"https://www.whitehouse.gov/",status:"source-linked"},
+{id:"secdef",name:"Secretary of Defense",category:"Civilian leadership position",description:"Civilian head of the Department of Defense; position distinct from the department itself.",source:"https://www.defense.gov/About/Leadership/",status:"source-linked"},
 {id:"dod",name:"Department of Defense",acronym:"DoD",category:"Department",description:"Executive department responsible for national defense.",source:"https://www.defense.gov/",status:"source-linked"},
 {id:"army",name:"Department of the Army",category:"Military department",description:"Military department within DoD; civilian and military leadership roles must be distinguished.",source:"https://www.army.mil/",status:"source-linked"},
 {id:"secarmy",name:"Secretary of the Army",category:"Civilian leadership",description:"Civilian head of the Department of the Army.",source:"https://www.army.mil/",status:"source-linked"},
@@ -23,6 +24,8 @@ export const entities:Entity[] = [
 ];
 export const relations:Relation[] = [
 ...phase2Relations,
+{from:"president",to:"secdef",type:"civilian-oversight",note:"Presidential executive oversight of the Secretary of Defense; not a complete operational command diagram.",source:"https://www.defense.gov/About/Leadership/",status:"source-linked"},
+{from:"secdef",to:"dod",type:"civilian-oversight",note:"Secretary of Defense heads the department; position and institution are distinct.",source:"https://www.defense.gov/About/Leadership/",status:"source-linked"},
 {from:"president",to:"dod",type:"civilian-oversight",note:"Executive branch oversight; not a complete operational command depiction.",status:"source-linked"},
 {from:"dod",to:"army",type:"administrative",note:"Departmental organizational relationship.",status:"source-linked"},
 {from:"army",to:"secarmy",type:"civilian-oversight",note:"Civilian leadership position.",status:"source-linked"},
