@@ -5,7 +5,7 @@ const types=["administrative","civilian-oversight"] as const;
 describe("Presidential to Huntington hierarchy",()=>{
 it("includes all selectable roots",()=>expect(hierarchyRoots.every(id=>entities.some(e=>e.id===id))).toBe(true));
 it("traces the president to Huntington through typed relationships",()=>{
-const path=traceHierarchy("president","lrh",[...types]);expect(path).not.toBeNull();expect(path?.[0].from).toBe("president");expect(path?.at(-1)?.to).toBe("lrh");expect(path?.every(s=>types.includes(s.relation.type as typeof types[number]))).toBe(true);
+const path=traceHierarchy("president","lrh",[...types]);expect(path).not.toBeNull();expect(path?.[0].from).toBe("president");expect(path?.[path.length-1]?.to).toBe("lrh");expect(path?.every(s=>types.includes(s.relation.type as typeof types[number]))).toBe(true);
 });
 it("finds the Civil Works oversight route separately",()=>{const path=traceHierarchy("secarmy","lrh",[...types]);expect(path?.some(s=>s.to==="asacw")).toBe(true)});
 it("does not fabricate a command-only route",()=>expect(traceHierarchy("president","lrh",["command"])).toBeNull());
