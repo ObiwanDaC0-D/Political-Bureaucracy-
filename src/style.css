@@ -22,3 +22,6 @@ a:focus-visible,select:focus-visible,.mobile-menu-toggle:focus-visible{outline:2
 .nav-list.is-open{display:flex}
 .nav-list .nav{width:100%;text-align:left}
 }
+
+/* Expandable atlas views and shared selection */
+.atlas-section{margin:18px 0}.section-toggle{display:flex;justify-content:space-between;align-items:center;width:100%;min-height:48px;padding:12px 18px;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--text);font:inherit;font-weight:700;text-align:left;cursor:pointer}.section-toggle:hover{border-color:var(--accent)}.section-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:3px}.atlas-section>.org-graph,.atlas-section>.panel{margin-top:8px}.graph-node button.graph-selected{border:2px solid var(--accent);box-shadow:0 0 0 2px color-mix(in srgb,var(--accent) 18%,transparent)}
